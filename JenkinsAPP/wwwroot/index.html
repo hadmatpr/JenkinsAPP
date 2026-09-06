@@ -1,0 +1,788 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JenkinsAPP | Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">J</div>
+
+                <div>
+                    <div class="brand-name">JenkinsAPP</div>
+                    <div class="brand-subtitle">Operations Dashboard</div>
+                </div>
+            </div>
+
+            <nav class="navigation">
+
+                <a href="/" class="nav-item active">
+                    <span class="nav-icon">⌂</span>
+                    <span>Overview</span>
+                </a>
+
+                <a href="/WeatherForecast" class="nav-item">
+                    <span class="nav-icon">☁</span>
+                    <span>Weather API</span>
+                </a>
+
+                <a href="/openapi/v1.json" target="_blank" class="nav-item">
+                    <span class="nav-icon">◇</span>
+                    <span>API Documentation</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System Online</strong>
+                        <small>All services operational</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <div class="page-label">
+                        APPLICATION / OVERVIEW
+                    </div>
+
+                    <h1>Good evening 👋</h1>
+
+                    <p>
+                        Monitor your JenkinsAPP application from one place.
+                    </p>
+                </div>
+
+                <div class="topbar-right">
+
+                    <button id="refreshButton"
+                            class="refresh-button"
+                            title="Refresh dashboard">
+                        ↻
+                    </button>
+
+                    <div class="profile">
+                        A
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- HERO -->
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="production-badge">
+                        <span class="status-dot"></span>
+                        Production Ready
+                    </div>
+
+                    <h2>
+                        Application is running smoothly.
+                    </h2>
+
+                    <p>
+                        Your ASP.NET Core API and dashboard are online
+                        and responding normally.
+                    </p>
+
+                </div>
+
+                <div class="hero-decoration">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="grid-pattern"></div>
+                </div>
+
+            </section>
+
+
+            <!-- STAT CARDS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            API Status
+                        </span>
+
+                        <strong id="apiStatus">
+                            Checking...
+                        </strong>
+
+                        <small id="apiLatency">
+                            Testing endpoint
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ⚡
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Environment
+                        </span>
+
+                        <strong>
+                            Development
+                        </strong>
+
+                        <small>
+                            ASP.NET Core
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ◉
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Endpoint
+                        </span>
+
+                        <strong>
+                            /WeatherForecast
+                        </strong>
+
+                        <small>
+                            GET request available
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◷
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Last Checked
+                        </span>
+
+                        <strong id="lastChecked">
+                            —
+                        </strong>
+
+                        <small>
+                            Browser local time
+                        </small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTENT -->
+            <section class="content-grid">
+
+
+                <!-- WEATHER PANEL -->
+                <div class="panel weather-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <div class="panel-label">
+                                LIVE API DATA
+                            </div>
+
+                            <h3>
+                                Weather Forecast
+                            </h3>
+
+                        </div>
+
+                        <button id="weatherButton"
+                                class="primary-button">
+                            Load Forecast
+                        </button>
+
+                    </div>
+
+
+                    <div id="weatherContent">
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ☁
+                            </div>
+
+                            <h4>
+                                Ready to query the API
+                            </h4>
+
+                            <p>
+                                Click "Load Forecast" to retrieve
+                                data from your WeatherForecast controller.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HEALTH PANEL -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <div class="panel-label">
+                                SYSTEM
+                            </div>
+
+                            <h3>
+                                Service Health
+                            </h3>
+
+                        </div>
+
+                        <span class="healthy-badge">
+                            Healthy
+                        </span>
+
+                    </div>
+
+
+                    <div class="health-list">
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    Web Server
+                                </strong>
+                            </div>
+
+                            <span>
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    REST API
+                                </strong>
+                            </div>
+
+                            <span>
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    OpenAPI
+                                </strong>
+                            </div>
+
+                            <span>
+                                Available
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <a href="/WeatherForecast" target="_blank">
+                            Open Weather API
+                            <span>→</span>
+                        </a>
+
+                        <a href="/openapi/v1.json" target="_blank">
+                            OpenAPI JSON
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>
+                    JenkinsAPP Dashboard
+                </span>
+
+                <span>
+                    ASP.NET Core •
+                    <span id="year"></span>
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="/app.js"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JenkinsAPP | Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">J</div>
+
+                <div>
+                    <div class="brand-name">JenkinsAPP</div>
+                    <div class="brand-subtitle">Operations Dashboard</div>
+                </div>
+            </div>
+
+            <nav class="navigation">
+
+                <a href="/" class="nav-item active">
+                    <span class="nav-icon">⌂</span>
+                    <span>Overview</span>
+                </a>
+
+                <a href="/WeatherForecast" class="nav-item">
+                    <span class="nav-icon">☁</span>
+                    <span>Weather API</span>
+                </a>
+
+                <a href="/openapi/v1.json" target="_blank" class="nav-item">
+                    <span class="nav-icon">◇</span>
+                    <span>API Documentation</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System Online</strong>
+                        <small>All services operational</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <div class="page-label">
+                        APPLICATION / OVERVIEW
+                    </div>
+
+                    <h1>Good evening 👋</h1>
+
+                    <p>
+                        Monitor your JenkinsAPP application from one place.
+                    </p>
+                </div>
+
+                <div class="topbar-right">
+
+                    <button id="refreshButton"
+                            class="refresh-button"
+                            title="Refresh dashboard">
+                        ↻
+                    </button>
+
+                    <div class="profile">
+                        A
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- HERO -->
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="production-badge">
+                        <span class="status-dot"></span>
+                        Production Ready
+                    </div>
+
+                    <h2>
+                        Application is running smoothly.
+                    </h2>
+
+                    <p>
+                        Your ASP.NET Core API and dashboard are online
+                        and responding normally.
+                    </p>
+
+                </div>
+
+                <div class="hero-decoration">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="grid-pattern"></div>
+                </div>
+
+            </section>
+
+
+            <!-- STAT CARDS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            API Status
+                        </span>
+
+                        <strong id="apiStatus">
+                            Checking...
+                        </strong>
+
+                        <small id="apiLatency">
+                            Testing endpoint
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ⚡
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Environment
+                        </span>
+
+                        <strong>
+                            Development
+                        </strong>
+
+                        <small>
+                            ASP.NET Core
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ◉
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Endpoint
+                        </span>
+
+                        <strong>
+                            /WeatherForecast
+                        </strong>
+
+                        <small>
+                            GET request available
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◷
+                    </div>
+
+                    <div>
+                        <span class="stat-label">
+                            Last Checked
+                        </span>
+
+                        <strong id="lastChecked">
+                            —
+                        </strong>
+
+                        <small>
+                            Browser local time
+                        </small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTENT -->
+            <section class="content-grid">
+
+
+                <!-- WEATHER PANEL -->
+                <div class="panel weather-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <div class="panel-label">
+                                LIVE API DATA
+                            </div>
+
+                            <h3>
+                                Weather Forecast
+                            </h3>
+
+                        </div>
+
+                        <button id="weatherButton"
+                                class="primary-button">
+                            Load Forecast
+                        </button>
+
+                    </div>
+
+
+                    <div id="weatherContent">
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ☁
+                            </div>
+
+                            <h4>
+                                Ready to query the API
+                            </h4>
+
+                            <p>
+                                Click "Load Forecast" to retrieve
+                                data from your WeatherForecast controller.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HEALTH PANEL -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <div class="panel-label">
+                                SYSTEM
+                            </div>
+
+                            <h3>
+                                Service Health
+                            </h3>
+
+                        </div>
+
+                        <span class="healthy-badge">
+                            Healthy
+                        </span>
+
+                    </div>
+
+
+                    <div class="health-list">
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    Web Server
+                                </strong>
+                            </div>
+
+                            <span>
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    REST API
+                                </strong>
+                            </div>
+
+                            <span>
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-row">
+
+                            <div>
+                                <span class="status-dot"></span>
+                                <strong>
+                                    OpenAPI
+                                </strong>
+                            </div>
+
+                            <span>
+                                Available
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <a href="/WeatherForecast" target="_blank">
+                            Open Weather API
+                            <span>→</span>
+                        </a>
+
+                        <a href="/openapi/v1.json" target="_blank">
+                            OpenAPI JSON
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>
+                    JenkinsAPP Dashboard
+                </span>
+
+                <span>
+                    ASP.NET Core •
+                    <span id="year"></span>
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="/app.js"></script>
+
+</body>
+</html>
