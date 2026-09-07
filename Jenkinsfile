@@ -3,20 +3,18 @@ pipeline {
     agent any
 
     environment {
-        // .NET Project
-        PROJECT_PATH = "MyMvcApp\\MyMvcApp.csproj"
-        PUBLISH_FOLDER = "publish"
+    PROJECT_PATH = "JenkinsAPP\\JenkinsAPP.csproj"
+    PUBLISH_FOLDER = "publish"
 
-        // Target Windows EC2
-        TARGET_SERVER = "10.0.1.100"
+    TARGET_SERVER = "172.31.0.155"
 
-        // IIS Configuration
-        IIS_APP_POOL = "MyMvcAppPool"
-        IIS_SITE_NAME = "MyMvcApp"
+    IIS_APP_POOL = "JenkinsAPPPool"
+    IIS_SITE_NAME = "JenkinsAPP"
 
-        // Deployment folder on target EC2
-        DEPLOY_PATH = "C:\\inetpub\\wwwroot\\MyMvcApp"
-    }
+    DEPLOY_PATH = "C:\\inetpub\\wwwroot\\JenkinsAPP"
+
+    HEALTH_CHECK_URL = "http://172.31.0.155:8080"
+}
 
     stages {
 
