@@ -1,3 +1,4 @@
+// Jenkins pipeline configuration
 pipeline {
     agent any
 
